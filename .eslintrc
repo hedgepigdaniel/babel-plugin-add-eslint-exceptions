@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:prettier/recommended"],
+  "extends": ["eslint-config-airbnb", "plugin:prettier/recommended"],
   "parser": "babel-eslint",
   "rules": {
     "prettier/prettier": "warning"
