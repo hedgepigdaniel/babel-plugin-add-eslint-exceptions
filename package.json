@@ -1,0 +1,10 @@
+{
+  "name": "babel-plugin-add-eslint-exceptions",
+  "version": "0.1.0",
+  "description": "Babel plugin which runs eslint on source files and adds eslint inline comments with specific exceptions for broken eslint rules",
+  "main": "dist/index.js",
+  "repository": "https://github.com/hedgepigdaniel/babel-plugin-eslint-exceptions",
+  "author": "Daniel Playfair Cal <daniel.playfair.cal@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
