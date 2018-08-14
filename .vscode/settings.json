@@ -1,0 +1,6 @@
+{
+  "eslint.packageManager": "yarn",
+  "[javascript]": {
+    "editor.tabSize": 2
+  }
+}
