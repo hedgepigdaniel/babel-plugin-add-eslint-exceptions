@@ -20,6 +20,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _default = function _default() {
+  var remainingMessages;
   return {
     pre: function pre() {// check that prettier passes?
     },
@@ -31,13 +32,19 @@ var _default = function _default() {
           var eslintOpts = _objectSpread({}, opts.eslintOpts);
 
           var cli = new _eslint.CLIEngine(eslintOpts);
-          console.log(path, state);
 
           var _cli$executeOnText = cli.executeOnText(state.file.code),
               _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
-              result = _cli$executeOnText$re[0];
+              messages = _cli$executeOnText$re[0].messages;
 
-          console.log(result);
+          remainingMessages = messages;
+        },
+        exit: function exit() {
+          if (remainingMessages.length) {
+            // eslint-disable-next-line no-console
+            console.error('Failed to add exceptions for the following errors:', remainingMessages);
+            throw new Error("Could not add all exceptions");
+          }
         }
       }
     },
