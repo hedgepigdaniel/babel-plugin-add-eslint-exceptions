@@ -27,7 +27,7 @@ export default () => {
               opts.ignoreRules.indexOf(message.ruleId) === -1);
           }
 
-          traverse(path.file.ast, { enter: enterPath });
+          traverse(state.file.ast, { enter: enterPath });
         },
         exit() {
           if (remainingMessages.length) {

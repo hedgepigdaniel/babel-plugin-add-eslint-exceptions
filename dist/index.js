@@ -54,7 +54,7 @@ var _default = function _default() {
             });
           }
 
-          (0, _babelTraverse.default)(path.file.ast, {
+          (0, _babelTraverse.default)(state.file.ast, {
             enter: enterPath
           });
         },
