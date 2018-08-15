@@ -22,19 +22,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var _default = function _default() {
   return {
     pre: function pre(state) {
+      console.log(arguments);
+
       var opts = _objectSpread({}, state.opts);
 
       console.log(opts);
       var cli = new _eslint.CLIEngine(opts.eslintOpts);
 
       var _cli$executeOnText = cli.executeOnText(state.code),
-          results = _cli$executeOnText.results;
-
-      var _cli$executeOnText2 = cli.executeOnText(state.code),
-          _cli$executeOnText2$r = _slicedToArray(_cli$executeOnText2.results, 1),
-          result = _cli$executeOnText2$r[0];
+          _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
+          result = _cli$executeOnText$re[0];
 
       console.log(result);
+    },
+    visitor: {
+      StringLiteral: function StringLiteral(path) {
+        console.log(path.opts);
+      }
     },
     post: function post() {}
   };
