@@ -27,7 +27,12 @@ var _default = function _default() {
   var remainingMessages;
 
   var enterPath = function enterPath(path) {
-    console.log(path.node.type);
+    if (remainingMessages.find(function (message) {
+      return message.nodeType === path.nodetype;
+    })) {
+      console.log(path.node);
+      console.log(path.node.loc);
+    }
   };
 
   return {
