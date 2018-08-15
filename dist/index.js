@@ -24,6 +24,7 @@ var _default = function _default() {
     pre: function pre(state) {
       var opts = _objectSpread({}, state.opts);
 
+      console.log(opts);
       var cli = new _eslint.CLIEngine(opts.eslintOpts);
 
       var _cli$executeOnText = cli.executeOnText(state.code),

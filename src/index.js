@@ -5,6 +5,7 @@ export default () => ({
     const opts = {
       ...state.opts,
     };
+    console.log(opts);
     const cli = new CLIEngine(opts.eslintOpts);
     const { results } = cli.executeOnText(state.code)
     const { results: [result] } = cli.executeOnText(state.code);
