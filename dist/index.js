@@ -52,6 +52,11 @@ var _default = function _default() {
             throw new Error("Could not add all exceptions");
           }
         }
+      },
+      "*": {
+        enter: function enter(path, state) {
+          console.log(path, state);
+        }
       }
     },
     post: function post() {// Run prettier to fix formatting?
