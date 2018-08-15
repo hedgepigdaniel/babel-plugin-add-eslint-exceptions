@@ -36,8 +36,8 @@ var _default = function _default() {
       console.log(result);
     },
     visitor: {
-      StringLiteral: function StringLiteral(path) {
-        console.log(path.opts);
+      StringLiteral: function StringLiteral(path, state) {
+        console.log(state.opts);
       }
     },
     post: function post() {}

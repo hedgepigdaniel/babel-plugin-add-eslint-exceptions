@@ -12,8 +12,8 @@ export default () => ({
     console.log(result);
   },
   visitor: {
-    StringLiteral(path) {
-      console.log(path.opts);
+    StringLiteral(path, state) {
+      console.log(state.opts);
     },
   },
   post() {
