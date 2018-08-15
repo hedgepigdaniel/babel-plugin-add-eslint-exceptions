@@ -1,7 +1,11 @@
 import { CLIEngine } from 'eslint';
+import traverse from "babel-traverse";
 
 export default () => {
   let remainingMessages;
+  const enterPath = (path) => {
+    console.log(path.node.type);
+  };
   return {
     pre() {
       // check that prettier passes?
@@ -22,6 +26,8 @@ export default () => {
             remainingMessages = remainingMessages.filter((message) =>
               opts.ignoreRules.indexOf(message.ruleId) === -1);
           }
+
+          traverse(path.file.ast, { enter: enterPath });
         },
         exit() {
           if (remainingMessages.length) {

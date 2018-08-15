@@ -7,6 +7,10 @@ exports.default = void 0;
 
 var _eslint = require("eslint");
 
+var _babelTraverse = _interopRequireDefault(require("babel-traverse"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -21,6 +25,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _default = function _default() {
   var remainingMessages;
+
+  var enterPath = function enterPath(path) {
+    console.log(path.node.type);
+  };
+
   return {
     pre: function pre() {// check that prettier passes?
     },
@@ -44,6 +53,10 @@ var _default = function _default() {
               return opts.ignoreRules.indexOf(message.ruleId) === -1;
             });
           }
+
+          (0, _babelTraverse.default)(path.file.ast, {
+            enter: enterPath
+          });
         },
         exit: function exit() {
           if (remainingMessages.length) {
