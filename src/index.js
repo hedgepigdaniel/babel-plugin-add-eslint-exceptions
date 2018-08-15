@@ -14,7 +14,7 @@ export default () => ({
           ...opts.eslintOpts,
         };
         const cli = new CLIEngine(eslintOpts);
-        console.log(state.code);
+        console.log(path, state);
         const { results: [result] } = cli.executeOnText(state.code);
         console.log(result);
       },

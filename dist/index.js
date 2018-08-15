@@ -31,7 +31,7 @@ var _default = function _default() {
           var eslintOpts = _objectSpread({}, opts.eslintOpts);
 
           var cli = new _eslint.CLIEngine(eslintOpts);
-          console.log(state.code);
+          console.log(path, state);
 
           var _cli$executeOnText = cli.executeOnText(state.code),
               _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
