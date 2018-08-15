@@ -40,11 +40,6 @@ export default () => {
           }
         }
       },
-      "*": {
-        enter(path, state) {
-          console.log(path, state);
-        },
-      },
     },
     post() {
       // Run prettier to fix formatting?
