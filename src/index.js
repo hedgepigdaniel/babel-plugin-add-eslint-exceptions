@@ -1,21 +1,25 @@
 import { CLIEngine } from 'eslint';
 
 export default () => ({
-  pre(state) {
-    console.log(arguments);
-    const opts = {
-      ...state.opts,
-    };
-    console.log(opts);
-    const cli = new CLIEngine(opts.eslintOpts);
-    const { results: [result] } = cli.executeOnText(state.code);
-    console.log(result);
+  pre() {
+    // check that prettier passes?
   },
   visitor: {
-    StringLiteral(path, state) {
-      console.log(state.opts);
+    Program: {
+      enter(path, state) {
+        const opts = {
+          ...state.opts,
+        };
+        const eslintOpts = {
+          ...opts.eslintOpts,
+        };
+        const cli = new CLIEngine(eslintOpts);
+        const { results: [result] } = cli.executeOnText(state.code);
+        console.log(result);
+      },
     },
   },
   post() {
+    // Run prettier to fix formatting?
   },
 });

@@ -21,26 +21,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _default = function _default() {
   return {
-    pre: function pre(state) {
-      console.log(arguments);
-
-      var opts = _objectSpread({}, state.opts);
-
-      console.log(opts);
-      var cli = new _eslint.CLIEngine(opts.eslintOpts);
-
-      var _cli$executeOnText = cli.executeOnText(state.code),
-          _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
-          result = _cli$executeOnText$re[0];
-
-      console.log(result);
+    pre: function pre() {// check that prettier passes?
     },
     visitor: {
-      StringLiteral: function StringLiteral(path, state) {
-        console.log(state.opts);
+      Program: {
+        enter: function enter(path, state) {
+          var opts = _objectSpread({}, state.opts);
+
+          var eslintOpts = _objectSpread({}, opts.eslintOpts);
+
+          var cli = new _eslint.CLIEngine(eslintOpts);
+
+          var _cli$executeOnText = cli.executeOnText(state.code),
+              _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
+              result = _cli$executeOnText$re[0];
+
+          console.log(result);
+        }
       }
     },
-    post: function post() {}
+    post: function post() {// Run prettier to fix formatting?
+    }
   };
 };
 
