@@ -5,7 +5,7 @@ export default () => ({
     // check that prettier passes?
   },
   visitor: {
-    File: {
+    Program: {
       enter(path, state) {
         const opts = {
           ...state.opts,
@@ -15,7 +15,7 @@ export default () => ({
         };
         const cli = new CLIEngine(eslintOpts);
         console.log(path, state);
-        const { results: [result] } = cli.executeOnText(state.code);
+        const { results: [result] } = cli.executeOnText(state.file.code);
         console.log(result);
       },
     },

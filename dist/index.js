@@ -24,7 +24,7 @@ var _default = function _default() {
     pre: function pre() {// check that prettier passes?
     },
     visitor: {
-      File: {
+      Program: {
         enter: function enter(path, state) {
           var opts = _objectSpread({}, state.opts);
 
@@ -33,7 +33,7 @@ var _default = function _default() {
           var cli = new _eslint.CLIEngine(eslintOpts);
           console.log(path, state);
 
-          var _cli$executeOnText = cli.executeOnText(state.code),
+          var _cli$executeOnText = cli.executeOnText(state.file.code),
               _cli$executeOnText$re = _slicedToArray(_cli$executeOnText.results, 1),
               result = _cli$executeOnText$re[0];
 
