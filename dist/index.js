@@ -48,10 +48,10 @@ var _default = function _default() {
       }
     },
     post: function post(state) {
-      var brokenRules = new Set(remainingMessages.map(function (message) {
+      var brokenRules = new Array(new Set(remainingMessages.map(function (message) {
         return message.ruleId;
-      })).values();
-      var comment = "/* eslint-disable ".concat(brokenRules.join(','), " */");
+      })).values());
+      var comment = "/* eslint-disable ".concat(brokenRules.join(","), " */");
       console.log(state);
       console.log(brokenRules);
       console.log(comment);
