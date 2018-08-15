@@ -38,6 +38,12 @@ var _default = function _default() {
               messages = _cli$executeOnText$re[0].messages;
 
           remainingMessages = messages;
+
+          if (opts.ignoreRules) {
+            remainingMessages = remainingMessages.filter(function (message) {
+              return opts.ignoreRules.indexOf(message.ruleId) === -1;
+            });
+          }
         },
         exit: function exit() {
           if (remainingMessages.length) {

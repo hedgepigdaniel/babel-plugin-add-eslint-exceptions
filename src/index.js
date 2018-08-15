@@ -18,6 +18,10 @@ export default () => {
           const cli = new CLIEngine(eslintOpts);
           const { results: [ { messages }] } = cli.executeOnText(state.file.code);
           remainingMessages = messages;
+          if (opts.ignoreRules) {
+            remainingMessages = remainingMessages.filter((message) =>
+              opts.ignoreRules.indexOf(message.ruleId) === -1);
+          }
         },
         exit() {
           if (remainingMessages.length) {
