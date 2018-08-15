@@ -4,7 +4,7 @@ import traverse from "babel-traverse";
 export default () => {
   let remainingMessages;
   const enterPath = (path) => {
-    if (remainingMessages.find((message) => message.nodeType === path.nodeType)) {
+    if (remainingMessages.find((message) => message.nodeType === path.node.type)) {
       console.log(path.node);
       console.log(path.node.loc);
     }
