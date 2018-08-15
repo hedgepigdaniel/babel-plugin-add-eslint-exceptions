@@ -5,7 +5,7 @@ export default () => ({
     // check that prettier passes?
   },
   visitor: {
-    Program: {
+    File: {
       enter(path, state) {
         const opts = {
           ...state.opts,

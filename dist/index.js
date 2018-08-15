@@ -24,7 +24,7 @@ var _default = function _default() {
     pre: function pre() {// check that prettier passes?
     },
     visitor: {
-      Program: {
+      File: {
         enter: function enter(path, state) {
           var opts = _objectSpread({}, state.opts);
 
