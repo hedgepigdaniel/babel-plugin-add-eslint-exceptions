@@ -29,7 +29,7 @@ export default () => {
       }
     },
     post(state) {
-      const brokenRules = new Array(
+      const brokenRules = Array.from(
         new Set(remainingMessages.map(message => message.ruleId)).values()
       );
       const comment = `/* eslint-disable ${brokenRules.join(",")} */`;

@@ -48,7 +48,7 @@ var _default = function _default() {
       }
     },
     post: function post(state) {
-      var brokenRules = new Array(new Set(remainingMessages.map(function (message) {
+      var brokenRules = Array.from(new Set(remainingMessages.map(function (message) {
         return message.ruleId;
       })).values());
       var comment = "/* eslint-disable ".concat(brokenRules.join(","), " */");
