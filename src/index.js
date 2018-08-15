@@ -1,14 +1,7 @@
 import { CLIEngine } from 'eslint';
-import traverse from "babel-traverse";
 
 export default () => {
   let remainingMessages;
-  const enterPath = (path) => {
-    if (remainingMessages.find((message) => message.nodeType === path.node.type)) {
-      console.log(path.node);
-      console.log(path.node.loc);
-    }
-  };
   return {
     pre() {
       // check that prettier passes?
@@ -29,23 +22,15 @@ export default () => {
             remainingMessages = remainingMessages.filter((message) =>
               opts.ignoreRules.indexOf(message.ruleId) === -1);
           }
-
-          traverse(state.file.ast, { enter: enterPath });
         },
-        exit() {
-          if (remainingMessages.length) {
-            // eslint-disable-next-line no-console
-            console.error(
-              'Failed to add exceptions for the following errors:',
-              remainingMessages,
-            );
-            throw new Error("Could not add all exceptions");
-          }
-        }
       },
     },
-    post() {
-      // Run prettier to fix formatting?
+    post(state) {
+      const brokenRules = new Set(remainingMessages.map((message) => message.ruleId)).values();
+      const comment = `/* eslint-disable ${brokenRules.join(',')} */`;
+      console.log(state);
+      console.log(brokenRules);
+      console.log(comment);
     },
   };
 };
