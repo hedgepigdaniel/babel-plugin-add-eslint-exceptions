@@ -32,10 +32,12 @@ export default () => {
       const brokenRules = Array.from(
         new Set(remainingMessages.map(message => message.ruleId)).values()
       );
-      const comment = `/* eslint-disable ${brokenRules.join(",")} */`;
+      const comment = `/* eslint-disable ${brokenRules.join(",")} */\n\n`;
       console.log(state);
       console.log(brokenRules);
       console.log(comment);
+      // eslint-disable-next-line no-param-reassign
+      state.code = `${comment}${state.code}`;
     }
   };
 };

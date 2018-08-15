@@ -51,10 +51,12 @@ var _default = function _default() {
       var brokenRules = Array.from(new Set(remainingMessages.map(function (message) {
         return message.ruleId;
       })).values());
-      var comment = "/* eslint-disable ".concat(brokenRules.join(","), " */");
+      var comment = "/* eslint-disable ".concat(brokenRules.join(","), " */\n\n");
       console.log(state);
       console.log(brokenRules);
-      console.log(comment);
+      console.log(comment); // eslint-disable-next-line no-param-reassign
+
+      state.code = "".concat(comment).concat(state.code);
     }
   };
 };
